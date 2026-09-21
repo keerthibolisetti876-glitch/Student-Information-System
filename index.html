@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Information System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+
+    <div class="logo">
+        🎓 Student<span>Info</span>
+    </div>
+
+    <nav>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#students">Students</a>
+        <a href="#academic">Academic</a>
+        <a href="#attendance">Attendance</a>
+        <a href="#fees">Fees</a>
+        <a href="#reports">Reports</a>
+    </nav>
+
+    <button class="login-btn" onclick="login()">Login</button>
+
+</header>
+
+
+<!-- MAIN CONTAINER -->
+<main class="container">
+
+
+    <!-- DASHBOARD -->
+    <section id="dashboard">
+
+        <div class="welcome">
+
+            <div>
+                <p class="small-title">STUDENT INFORMATION SYSTEM</p>
+
+                <h1>Manage Student Records Easily</h1>
+
+                <p>
+                    Manage students, academic records, attendance,
+                    fees and documents from one simple dashboard.
+                </p>
+            </div>
+
+            <button onclick="showRegistration()">
+                + Register Student
+            </button>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <div class="icon">👨‍🎓</div>
+                <h3>Total Students</h3>
+                <h2 id="totalStudents">4</h2>
+                <p>Registered students</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon">📚</div>
+                <h3>Active Students</h3>
+                <h2 id="activeStudents">4</h2>
+                <p>Currently enrolled</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon">📅</div>
+                <h3>Attendance</h3>
+                <h2>86%</h2>
+                <p>Average attendance</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon">💰</div>
+                <h3>Fee Collection</h3>
+                <h2>₹2.4L</h2>
+                <p>This semester</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STUDENT REGISTRATION -->
+
+    <section id="registration" class="section hidden">
+
+        <h2>📝 Student Registration</h2>
+
+        <p class="section-description">
+            Enter student personal, academic and contact information.
+        </p>
+
+        <form onsubmit="registerStudent(event)">
+
+            <input
+                type="text"
+                id="studentName"
+                placeholder="Full Name"
+                required
+            >
+
+            <input
+                type="date"
+                id="dob"
+                required
+            >
+
+            <select id="gender" required>
+                <option value="">Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+
+            <input
+                type="text"
+                id="phone"
+                placeholder="Contact Number"
+                required
+            >
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Email Address"
+                required
+            >
+
+            <input
+                type="text"
+                id="course"
+                placeholder="Course / Branch"
+                required
+            >
+
+            <input
+                type="text"
+                id="year"
+                placeholder="Year / Semester"
+                required
+            >
+
+            <input
+                type="text"
+                id="address"
+                placeholder="Address"
+                required
+            >
+
+            <button type="submit">
+                Register Student
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- STUDENT LIST -->
+
+    <section id="students" class="section">
+
+        <div class="section-heading">
+
+            <div>
+                <h2>👨‍🎓 Student Listing</h2>
+
+                <p class="section-description">
+                    Search and manage student records.
+                </p>
+            </div>
+
+            <input
+                type="text"
+                id="search"
+                placeholder="🔍 Search student..."
+                onkeyup="searchStudents()"
+            >
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Course</th>
+                        <th>Year</th>
+                        <th>Attendance</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="studentTable">
+
+                    <tr>
+                        <td>STU001</td>
+                        <td>Rahul Kumar</td>
+                        <td>CSE</td>
+                        <td>3rd Year</td>
+                        <td>91%</td>
+                        <td>
+                            <span class="active">Active</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>STU002</td>
+                        <td>Priya Sharma</td>
+                        <td>ECE</td>
+                        <td>2nd Year</td>
+                        <td>88%</td>
+                        <td>
+                            <span class="active">Active</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>STU003</td>
+                        <td>Arjun Reddy</td>
+                        <td>CSE</td>
+                        <td>3rd Year</td>
+                        <td>82%</td>
+                        <td>
+                            <span class="active">Active</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>STU004</td>
+                        <td>Sneha Rao</td>
+                        <td>IT</td>
+                        <td>1st Year</td>
+                        <td>89%</td>
+                        <td>
+                            <span class="active">Active</span>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- STUDENT PROFILE -->
+
+    <section class="section">
+
+        <h2>👤 Student Profile</h2>
+
+        <div class="profile">
+
+            <div class="profile-photo">
+                👨‍🎓
+            </div>
+
+            <div class="profile-info">
+
+                <h2>Rahul Kumar</h2>
+
+                <p><b>Student ID:</b> STU001</p>
+
+                <p><b>Course:</b> Computer Science & Engineering</p>
+
+                <p><b>Year:</b> 3rd Year</p>
+
+                <p><b>Email:</b> rahul@example.com</p>
+
+                <p><b>Phone:</b> 9876543210</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ACADEMIC RECORDS -->
+
+    <section id="academic" class="section">
+
+        <h2>📚 Academic Records</h2>
+
+        <div class="cards">
+
+            <div class="info-card">
+                <h3>Semester 1</h3>
+                <p>SGPA</p>
+                <strong>8.6</strong>
+            </div>
+
+            <div class="info-card">
+                <h3>Semester 2</h3>
+                <p>SGPA</p>
+                <strong>8.8</strong>
+            </div>
+
+            <div class="info-card">
+                <h3>Semester 3</h3>
+                <p>SGPA</p>
+                <strong>8.5</strong>
+            </div>
+
+            <div class="info-card">
+                <h3>Current CGPA</h3>
+                <p>Overall</p>
+                <strong>8.63</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ATTENDANCE -->
+
+    <section id="attendance" class="section">
+
+        <h2>📅 Attendance Records</h2>
+
+        <div class="attendance-box">
+
+            <div>
+                <h3>Overall Attendance</h3>
+
+                <div class="progress">
+                    <div style="width: 86%">86%</div>
+                </div>
+            </div>
+
+            <div class="attendance-details">
+
+                <p><b>Working Days:</b> 120</p>
+
+                <p><b>Present:</b> 103</p>
+
+                <p><b>Absent:</b> 17</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEE MANAGEMENT -->
+
+    <section id="fees" class="section">
+
+        <h2>💰 Fee Management</h2>
+
+        <div class="cards">
+
+            <div class="info-card">
+                <h3>Total Fee</h3>
+                <strong>₹80,000</strong>
+                <p>Academic year</p>
+            </div>
+
+            <div class="info-card">
+                <h3>Paid</h3>
+                <strong>₹60,000</strong>
+                <p>Amount paid</p>
+            </div>
+
+            <div class="info-card">
+                <h3>Pending</h3>
+                <strong>₹20,000</strong>
+                <p>Amount remaining</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DOCUMENTS -->
+
+    <section class="section">
+
+        <h2>📄 Student Documents</h2>
+
+        <div class="documents">
+
+            <div>
+                <span>📄</span>
+                <h3>Identity Proof</h3>
+                <p>Uploaded</p>
+            </div>
+
+            <div>
+                <span>📜</span>
+                <h3>Previous Marks Memo</h3>
+                <p>Uploaded</p>
+            </div>
+
+            <div>
+                <span>📑</span>
+                <h3>Bonafide Certificate</h3>
+                <p>Available</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- REPORTS -->
+
+    <section id="reports" class="section">
+
+        <h2>📊 Reports</h2>
+
+        <p class="section-description">
+            Generate student-related reports.
+        </p>
+
+        <div class="report-buttons">
+
+            <button onclick="generateReport('Student')">
+                Student Report
+            </button>
+
+            <button onclick="generateReport('Academic')">
+                Academic Report
+            </button>
+
+            <button onclick="generateReport('Attendance')">
+                Attendance Report
+            </button>
+
+            <button onclick="generateReport('Fee')">
+                Fee Report
+            </button>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h2>🎓 StudentInfo</h2>
+
+    <p>
+        Student Information System | DataAlcott Web Development Internship
+    </p>
+
+    <p>
+        © 2026 StudentInfo. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
